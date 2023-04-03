@@ -1,0 +1,410 @@
+{% include 'head.html.twig' %}
+{% include 'loader.html.twig' %}
+{% include 'sidebar.html.twig' %}
+
+<!-- Custom Container -->
+<div class="dt-container">
+
+    <!-- Site Content Wrapper -->
+    <div class="dt-content-wrapper">
+
+        <!-- Site Content -->
+        <div class="dt-content">
+
+            <!-- Grid Item -->
+            <div class="col-xl-12">
+
+                <!-- Grid Item -->
+                <div class="row">
+
+                    <!-- Grid Item -->
+                    <div class="col-xl-4 col-md-4 order-xl-4">
+
+                        <!-- Card -->
+                        <div class="dt-card">
+
+                            <!-- Card Header -->
+                            <div class="dt-card__header">
+
+                                <!-- Card Heading -->
+                                <div class="dt-card__heading">
+                                    <h3 class="dt-card__title">Évènements</h3>
+                                </div>
+                                <!-- /card heading -->
+
+                            </div>
+                            <!-- /card header -->
+
+                            <!-- Card Body -->
+                            <div class="dt-card__body px-0">
+
+                                <!-- Widget -->
+                                <div class="dt-widget dt-widget-hover">
+                                    <h6 class="dt-widget__heading">Activités</h6>
+
+                                    {% for activity in activities|slice(0,3) %}
+                                        <!-- Widget Item -->
+                                        <div class="dt-widget__item">
+
+                                            <!-- Widget Image -->
+                                            <div class="dt-widget__img">
+                                                <!-- Avatar -->
+                                                <img class="dt-avatar size-20 rounded"
+                                                     src="{{ asset('build/images/icon-acbcl-favicon.ico') }}" alt="User">
+                                                <!-- /avatar -->
+                                            </div>
+                                            <!-- /widget image -->
+
+                                            <!-- Widget Info -->
+                                            <div class="dt-widget__info">
+                                                <a href="{{ path('app_event_sessions', {'slug': activity.slug, 'eventType':'activity'}) }}" class="dt-widget__title">{{ activity.name }}</a>
+                                            </div>
+                                            <!-- /widget info -->
+
+                                        </div>
+                                        <!-- /widgets item -->
+                                    {% endfor %}
+
+                                </div>
+                                <!-- /widget -->
+
+                                <!-- Widget -->
+                                <div class="dt-widget dt-widget-hover">
+                                    <h6 class="dt-widget__heading">Conférences</h6>
+
+                                    {% for conference in conferences|slice(0,3) %}
+                                        <!-- Widget Item -->
+                                        <div class="dt-widget__item">
+
+                                            <!-- Widget Image -->
+                                            <div class="dt-widget__img">
+                                                <!-- Avatar -->
+                                                <img class="dt-avatar size-20 rounded"
+                                                     src="{{ asset('build/images/icon-acbcl-favicon.ico') }}" alt="User">
+                                                <!-- /avatar -->
+                                            </div>
+                                            <!-- /widget image -->
+
+                                            <!-- Widget Info -->
+                                            <div class="dt-widget__info">
+                                                <a href="{{ path('app_event_sessions', {'slug': conference.slug, 'eventType':'conference'}) }}" class="dt-widget__title">{{ conference.name }}</a>
+                                            </div>
+                                            <!-- /widget info -->
+
+                                        </div>
+                                        <!-- /widgets item -->
+                                    {% endfor %}
+
+                                </div>
+                                <!-- /widget -->
+
+                                <!-- Widget -->
+                                <div class="dt-widget dt-widget-hover">
+                                    <h6 class="dt-widget__heading">Formations</h6>
+
+                                    {% for course in courses|slice(0,3) %}
+                                        <!-- Widget Item -->
+                                        <div class="dt-widget__item">
+
+                                            <!-- Widget Image -->
+                                            <div class="dt-widget__img">
+                                                <!-- Avatar -->
+                                                <img class="dt-avatar size-20 rounded"
+                                                     src="{{ asset('build/images/icon-acbcl-favicon.ico') }}" alt="User">
+                                                <!-- /avatar -->
+                                            </div>
+                                            <!-- /widget image -->
+
+                                            <!-- Widget Info -->
+                                            <div class="dt-widget__info">
+                                                <a href="{{ path('app_event_sessions', {'slug': course.slug, 'eventType':'course'}) }}" class="dt-widget__title">{{ course.name }}</a>
+                                            </div>
+                                            <!-- /widget info -->
+
+                                        </div>
+                                        <!-- /widgets item -->
+                                    {% endfor %}
+
+                                </div>
+                                <!-- /widget -->
+
+                                <!-- Widget Link -->
+                                <div class="dt-widget-link">
+                                    <a href="{{ path('app_events') }}" class="text-uppercase font-weight-500">Tous les évènements</a>
+                                </div>
+                                <!-- /widget link -->
+
+                            </div>
+                            <!-- /card body -->
+
+                        </div>
+                        <!-- /card -->
+
+                    </div>
+                    <!-- /grid item -->
+
+                    <div class="col-xl-8 col-md-8 order-xl-8">
+                        <!-- Grid Item -->
+                        <div class="row">
+                            <!-- Grid Item -->
+                            <div class="col-xl-6 col-md-6 order-xl-6">
+
+                                <!-- Card -->
+                                <div class="dt-card">
+
+                                    <!-- Card Body -->
+                                    <div class="dt-card__body p-6">
+                                        <!-- Media -->
+                                        <div class="media mb-3">
+
+                                            <!-- Avatar -->
+                                            <img class="img-fluid mr-6" src="{{ asset('build/images/icon-acbcl-favicon.ico') }}" width="40" height="40"
+                                                 alt="project">
+                                            <!-- /avatar -->
+
+                                            <!-- Media Body -->
+                                            <div class="media-body align-self-center">
+                                                <div class="h2 mb-1">ACBCL</div>
+                                                <span class="d-block text-light-gray">Qui sommes-nous ?</span>
+                                            </div>
+                                            <!-- /media body -->
+
+                                        </div>
+                                        <!-- /media -->
+
+                                        <!-- Card text -->
+                                        <p>Depuis 1992, l’ACBCL s’implique au sein des quartiers des Buers et Croix-Luizet, dans diverses activités, en particulier l’accompagnement scolaire, afin de favoriser le lien social et diminuer les inégalités scolaires et sociales...</p>
+                                        <!-- /card text -->
+
+                                        <!-- Button -->
+                                        <a href="{{ path('app_whoarewe') }}" class="card-link">En savoir plus</a>
+                                        <!-- /button -->
+
+                                    </div>
+                                    <!-- /card body -->
+
+                                </div>
+                                <!-- /card -->
+
+                            </div>
+                            <!-- /grid item -->
+
+                            <!-- Grid Item -->
+                            <div class="col-xl-6 col-md-6 order-xl-6">
+
+                                <!-- Card -->
+                                <div class="dt-card">
+
+                                    <!-- Card Body -->
+                                    <div class="dt-card__body p-6">
+                                        <!-- Media -->
+                                        <div class="media mb-3">
+
+                                            <!-- Avatar -->
+                                            <img class="img-fluid mr-6" src="{{ asset('build/images/icon-acbcl-favicon.ico') }}" width="40" height="40"
+                                                 alt="project">
+                                            <!-- /avatar -->
+
+                                            <!-- Media Body -->
+                                            <div class="media-body align-self-center">
+                                                <div class="h2 mb-1">Devenez bénévole</div>
+                                                <span class="d-block text-light-gray">Une aventure !</span>
+                                            </div>
+                                            <!-- /media body -->
+
+                                        </div>
+                                        <!-- /media -->
+
+                                        <!-- Card text -->
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...</p>
+                                        <!-- /card text -->
+
+                                        <!-- Button -->
+                                        <a href="{{ path('app_volunteer') }}" class="card-link">En savoir plus</a>
+                                        <!-- /button -->
+
+                                    </div>
+                                    <!-- /card body -->
+
+                                </div>
+                                <!-- /card -->
+
+                            </div>
+                            <!-- /grid item -->
+                        </div>
+
+                        <!-- Grid Item -->
+                        <div class="row">
+
+                            <!-- Grid Item -->
+                            <div class="col-xl-12">
+
+                                <!-- Card -->
+                                <div class="dt-card dt-card__full-height pb-4">
+
+                                    <!-- Card Header -->
+                                    <div class="dt-card__header mb-3">
+
+                                        <!-- Card Heading -->
+                                        <div class="dt-card__heading">
+                                            <h3 class="dt-card__title">Articles</h3>
+                                        </div>
+                                        <!-- /card heading -->
+
+                                        <!-- Card Tools -->
+                                        <div class="dt-card__tools">
+
+                                            <!-- Dropdown -->
+                                            <div class="dropdown d-inline-block">
+
+                                                <!-- Button -->
+                                                <a href="{{ path('app_articles') }}" class="card-link">En savoir plus</a>
+                                                <!-- /button -->
+
+                                            </div>
+                                            <!-- /dropdown -->
+
+                                        </div>
+                                        <!-- /card tools -->
+
+                                    </div>
+                                    <!-- /card header -->
+
+                                    <!-- Card Body -->
+                                    <div class="dt-card__body p-0 max-h-400 ps-custom-scrollbar">
+                                        <!-- Widget -->
+                                        <div class="dt-widget dt-widget-hover-bg text-light-gray">
+
+                                            {% for article in articles %}
+                                                <!-- Widget Item -->
+                                                <div class="dt-widget__item">
+
+                                                    <!-- Widget Info -->
+                                                    <div class="dt-widget__info text-truncate">
+                                                        <div class="dt-widget__title text-truncate">
+                                                            <a href="{{ path('app_article_details', {'id': article.id}) }}">{{ article.title }}</a>
+                                                            <span class="badge badge-sm badge-pill badge-success d-none d-sm-inline-block">{{ article.articleType.name }}</span>
+                                                        </div>
+                                                        <p class="dt-widget__subtitle text-truncate">
+                                                            {{ article.createdAt | date("d/m/Y") }}</p>
+                                                    </div>
+                                                    <!-- /widget info -->
+                                                </div>
+                                                <!-- /widgets item -->
+                                            {% endfor %}
+                                        </div>
+                                        <!-- /widget -->
+                                    </div>
+                                    <!-- /card body -->
+
+                                </div>
+                                <!-- /card -->
+
+                            </div>
+                            <!-- /grid item -->
+
+{#                            <!-- Grid Item -->#}
+{#                            <div class="col-xl-6 col-md-6 order-xl-6">#}
+
+{#                                <!-- Card -->#}
+{#                                <div class="dt-card">#}
+
+{#                                    <!-- Card Body -->#}
+{#                                    <div class="dt-card__body p-6">#}
+{#                                        <!-- Media -->#}
+{#                                        <div class="media mb-3">#}
+
+{#                                            <!-- Avatar -->#}
+{#                                            <img class="img-fluid mr-6" src="https://via.placeholder.com/90x59"#}
+{#                                                 alt="project">#}
+{#                                            <!-- /avatar -->#}
+
+{#                                            <!-- Media Body -->#}
+{#                                            <div class="media-body align-self-center">#}
+{#                                                <div class="h2 mb-1">Modern home</div>#}
+{#                                                <span class="d-block text-light-gray">Biloxy, Boston</span>#}
+{#                                            </div>#}
+{#                                            <!-- /media body -->#}
+
+{#                                        </div>#}
+{#                                        <!-- /media -->#}
+
+{#                                        <!-- Card text -->#}
+{#                                        <p>Structure sales Pvt. Ltd is boston’s reputed government construction company since 2011.</p>#}
+{#                                        <!-- /card text -->#}
+
+{#                                        <!-- Button -->#}
+{#                                        <a href="javascript:void(0)" class="card-link">Read More</a>#}
+{#                                        <!-- /button -->#}
+
+{#                                    </div>#}
+{#                                    <!-- /card body -->#}
+
+{#                                </div>#}
+{#                                <!-- /card -->#}
+
+{#                            </div>#}
+{#                            <!-- /grid item -->#}
+
+{#                            <!-- Grid Item -->#}
+{#                            <div class="col-xl-6 col-md-6 order-xl-6">#}
+
+{#                                <!-- Card -->#}
+{#                                <div class="dt-card">#}
+
+{#                                    <!-- Card Body -->#}
+{#                                    <div class="dt-card__body p-6">#}
+{#                                        <!-- Media -->#}
+{#                                        <div class="media mb-3">#}
+
+{#                                            <!-- Avatar -->#}
+{#                                            <img class="img-fluid mr-6" src="https://via.placeholder.com/90x59"#}
+{#                                                 alt="project">#}
+{#                                            <!-- /avatar -->#}
+
+{#                                            <!-- Media Body -->#}
+{#                                            <div class="media-body align-self-center">#}
+{#                                                <div class="h2 mb-1">Modern home</div>#}
+{#                                                <span class="d-block text-light-gray">Biloxy, Boston</span>#}
+{#                                            </div>#}
+{#                                            <!-- /media body -->#}
+
+{#                                        </div>#}
+{#                                        <!-- /media -->#}
+
+{#                                        <!-- Card text -->#}
+{#                                        <p>Structure sales Pvt. Ltd is boston’s reputed government construction company since 2011.</p>#}
+{#                                        <!-- /card text -->#}
+
+{#                                        <!-- Button -->#}
+{#                                        <a href="javascript:void(0)" class="card-link">Read More</a>#}
+{#                                        <!-- /button -->#}
+
+{#                                    </div>#}
+{#                                    <!-- /card body -->#}
+
+{#                                </div>#}
+{#                                <!-- /card -->#}
+
+{#                            </div>#}
+{#                            <!-- /grid item -->#}
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /grid item -->
+
+            </div>
+            <!-- /grid item -->
+
+        </div>
+        <!-- /site content -->
+
+    </div>
+    <!-- /site content wrapper -->
+
+</div>
+<!-- /custom Container -->
+
+{% include 'footer.html.twig' %}
+{% include 'script.html.twig' %}

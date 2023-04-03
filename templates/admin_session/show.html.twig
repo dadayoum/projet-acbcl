@@ -1,0 +1,318 @@
+{% include 'head.html.twig' %}
+{% include 'loader.html.twig' %}
+{% include 'sidebar.html.twig' %}
+
+<!-- Custom Container -->
+<div class="dt-container">
+
+    <!-- Site Content Wrapper -->
+    <div class="dt-content-wrapper">
+
+        <!-- Site Content -->
+        <div class="dt-content">
+
+            <!-- Grid Item -->
+            <div class="col-xl-12 col-md-6 col-12 order-xl-1">
+
+                <a href="{{ path('app_admin_session_index') }}">Retour à la liste</a>
+
+                <!-- Card -->
+                <div class="dt-card dt-card__full-height">
+
+                    <!-- Card Header -->
+                    <div class="dt-card__header pt-6">
+
+                        <!-- Card Heading -->
+                        <div class="dt-card__heading">
+                            <h3 class="dt-card__title">Session N°{{ sessionEvent.id }}</h3>
+                        </div>
+                        <!-- /card heading -->
+
+                    </div>
+                    <!-- /card header -->
+
+                    <!-- Card Body -->
+                    <div class="dt-card__body">
+
+                        <div class="row">
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-date-time-picker icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Créé le</span>
+                                    <span class="h5">{{ sessionEvent.createdAt ? sessionEvent.createdAt|date('Y-m-d H:i:s') : '-' }}</span>
+                                </div>
+                                <!-- /media body -->
+
+                            </div>
+                            <!-- /media -->
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-date-time-picker icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Mise à jour le</span>
+                                        <span class="h5">{{ sessionEvent.updatedAt ? sessionEvent.updatedAt|date('Y-m-d H:i:s') : '-' }}</span>
+                                </div>
+                                <!-- /media body -->
+
+                            </div>
+                            <!-- /media -->
+
+                            {% if sessionEvent.course %}
+                                <!-- Media -->
+                                <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                    <i class="icon icon-tag icon-xl mr-5"></i>
+
+                                    <!-- Media Body -->
+                                    <div class="media-body">
+                                        <span class="d-block text-light-gray f-12 mb-1">Formation</span>
+                                        <span class="h5">{{ sessionEvent.course.name }}</span>
+                                    </div>
+                                    <!-- /media body -->
+
+                                </div>
+                                <!-- /media -->
+                            {% elseif sessionEvent.activity %}
+                                <!-- Media -->
+                                <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                    <i class="icon icon-tag icon-xl mr-5"></i>
+
+                                    <!-- Media Body -->
+                                    <div class="media-body">
+                                        <span class="d-block text-light-gray f-12 mb-1">Activité</span>
+                                        <span class="h5">{{ sessionEvent.activity.name }}</span>
+                                    </div>
+                                    <!-- /media body -->
+
+                                </div>
+                                <!-- /media -->
+                            {% elseif sessionEvent.conference %}
+                                <!-- Media -->
+                                <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                    <i class="icon icon-tag icon-xl mr-5"></i>
+
+                                    <!-- Media Body -->
+                                    <div class="media-body">
+                                        <span class="d-block text-light-gray f-12 mb-1">Conférence</span>
+                                        <span class="h5">{{ sessionEvent.conference.name }}</span>
+                                    </div>
+                                    <!-- /media body -->
+
+                                </div>
+                                <!-- /media -->
+                                {{ sessionEvent.conference.name }}
+                            {% else %}
+                                <!-- Media -->
+                                <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                    <i class="icon icon-tag icon-xl mr-5"></i>
+
+                                    <!-- Media Body -->
+                                    <div class="media-body">
+                                        <span class="d-block text-light-gray f-12 mb-1">Non défini</span>
+                                        <span class="h5">-</span>
+                                    </div>
+                                    <!-- /media body -->
+
+                                </div>
+                                <!-- /media -->
+                            {% endif %}
+
+                        </div>
+
+                        <div class="row">
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-date-time-picker icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Début</span>
+                                    <span class="h5">{{ sessionEvent.startAt ? sessionEvent.startAt|date('Y-m-d H:i:s') : '-' }}</span>
+                                </div>
+                                <!-- /media body -->
+
+                            </div>
+                            <!-- /media -->
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-date-time-picker icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Fin</span>
+                                    <span class="h5">{{ sessionEvent.endAt ? sessionEvent.endAt|date('Y-m-d H:i:s') : '-' }}</span>
+                                </div>
+                                <!-- /media body -->
+
+                            </div>
+                            <!-- /media -->
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-home icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Lieu</span>
+                                        <span class="h5">{{ sessionEvent.location ? sessionEvent.location : '-'}}</span>
+                                </div>
+                                <!-- /media body -->
+
+                            </div>
+                            <!-- /media -->
+
+                        </div>
+
+                        <div class="row">
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-user icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Référent</span>
+                                    <span class="h5">{{ sessionEvent.referent ? sessionEvent.referent : 'Pas de référent'}}</span>
+                                </div>
+                                <!-- /media body -->
+
+
+                            </div>
+                            <!-- /media -->
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-phone-o icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Contact du référent</span>
+                                    <span class="h5">{{ sessionEvent.referentContact ? sessionEvent.referentContact : 'Pas de contact'}}</span>
+                                </div>
+                                <!-- /media body -->
+
+                            </div>
+                            <!-- /media -->
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-price-list icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Prix</span>
+                                    <span class="h5">{{ sessionEvent.price ? sessionEvent.price~'€' : 'Gratuit' }}</span>
+                                </div>
+                                <!-- /media body -->
+
+                            </div>
+                            <!-- /media -->
+
+                        </div>
+
+                        <a href="{{ path('app_admin_session_edit', {'id': sessionEvent.id}) }}" class="btn btn-primary mt-2 mb-2">Éditer</a>
+
+                        {{ include('admin_session/_delete_form.html.twig') }}
+
+                        <div class="row">
+
+                                <!-- Tables -->
+                                <div class="table-responsive">
+
+                                    <a href="{{ path('app_admin_session_add_user', {'id': sessionEvent.id}) }}" class="btn btn-primary mt-2 mb-2">Ajouter des inscriptions</a>
+
+                                    <a href="{{ path('app_admin_session_remove_user', {'id': sessionEvent.id}) }}" class="btn btn-danger mt-2 mb-2">Supprimer des inscriptions</a>
+
+                                    <table id="data-table" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>Email</th>
+                                            <th>Adresse</th>
+                                            <th>Numéro de téléphone</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for registrant in registrants %}
+                                            <tr>
+                                                <td>{{ registrant.lastName|upper }}</td>
+                                                <td>{{ registrant.firstName }}</td>
+                                                <td>{{ registrant.email }}</td>
+                                                <td>{{ registrant.address }} {{ registrant.city|upper }} {{ registrant.zipCode }}</td>
+                                                <td>{{ registrant.phoneNumber }}</td>
+                                                <td>
+                                                    <!-- List -->
+                                                    <ul class="dt-list dt-list-cm-0">
+                                                        <!-- List Item -->
+                                                        <li class="dt-list__item">
+                                                            <a class="text-light-gray" href="{{ path('app_admin_user_show', {'id': registrant.id}) }}">
+                                                                <i class="icon icon-user"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <!-- /list -->
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>Email</th>
+                                            <th>Adresse</th>
+                                            <th>Numéro de téléphone</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+
+                                </div>
+                                <!-- /tables -->
+                            </div>
+                            <!-- /card body -->
+
+                        </div>
+                    </div>
+                    <!-- /card body -->
+
+                </div>
+                <!-- /card -->
+
+
+            </div>
+            <!-- /grid item -->
+
+        </div>
+        <!-- /site content -->
+
+    </div>
+    <!-- /site content wrapper -->
+
+</div>
+<!-- /custom Container -->
+
+{% include 'footer.html.twig' %}
+{% include 'script.html.twig' %}

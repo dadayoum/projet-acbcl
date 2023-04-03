@@ -1,0 +1,233 @@
+{% include 'head.html.twig' %}
+{% include 'loader.html.twig' %}
+{% include 'sidebar.html.twig' %}
+
+<!-- Custom Container -->
+<div class="dt-container">
+
+    <!-- Site Content Wrapper -->
+    <div class="dt-content-wrapper">
+
+        <!-- Site Content -->
+        <div class="dt-content">
+
+            <!-- Profile -->
+            <div class="profile">
+
+                <!-- Profile Banner -->
+                <div class="profile__banner" style="background-color: #51c3e9">
+
+                    <!-- Profile Banner Top -->
+                    <div class="profile__banner-detail">
+                        <!-- Avatar Wrapper -->
+                        <div class="dt-avatar-wrapper">
+                            <!-- Info -->
+                            <div class="dt-avatar-info">
+                                <span class="dt-avatar-name display-4 mb-2 font-weight-light">{{ user.firstName }} {{ user.lastName|upper }}</span>
+                                <span class="f-16">{{ user.isVerified ? 'Compte vérifié' : 'Compte non vérifié, veuillez vérifier vos e-mails !' }}</span>
+                            </div>
+                            <!-- /info -->
+                        </div>
+                        <!-- /avatar wrapper -->
+                    </div>
+                    <!-- /profile banner top -->
+
+                </div>
+                <!-- /profile banner -->
+
+                <!-- Profile Content -->
+                <div class="profile-content">
+
+                    <!-- Grid -->
+                    <div class="row">
+
+                        <!-- Grid Item -->
+                        <div class="col-xl-4 order-xl-2">
+
+                            <!-- Grid -->
+                            <div class="row">
+
+                                <!-- Grid Item -->
+                                <div class="col-xl-12 col-md-6 col-12 order-xl-1">
+
+                                    <!-- Card -->
+                                    <div class="dt-card dt-card__full-height">
+
+                                        <!-- Card Header -->
+                                        <div class="dt-card__header pt-6">
+
+                                            <!-- Card Heading -->
+                                            <div class="dt-card__heading">
+                                                <h3 class="dt-card__title">Contact</h3>
+                                            </div>
+                                            <!-- /card heading -->
+
+                                        </div>
+                                        <!-- /card header -->
+
+                                        <!-- Card Body -->
+                                        <div class="dt-card__body">
+                                            <!-- Media -->
+                                            <div class="media mb-5">
+
+                                                <i class="icon icon-mail icon-xl mr-5"></i>
+
+                                                <!-- Media Body -->
+                                                <div class="media-body">
+                                                    <span class="d-block text-light-gray f-12 mb-1">E-mail</span>
+                                                    <span class="h5">{{ user.email }}</span>
+                                                </div>
+                                                <!-- /media body -->
+
+                                            </div>
+                                            <!-- /media -->
+
+                                            <!-- Media -->
+                                            <div class="media">
+
+                                                <i class="icon icon-phone-o icon-xl mr-5"></i>
+
+                                                <!-- Media Body -->
+                                                <div class="media-body">
+                                                    <span class="d-block text-light-gray f-12 mb-1">Téléphone</span>
+                                                    <span class="h5">{{ user.phoneNumber ? user.phoneNumber : 'Non renseigné' }}</span>
+                                                </div>
+                                                <!-- /media body -->
+
+                                            </div>
+                                            <!-- /media -->
+                                        </div>
+                                        <!-- /card body -->
+
+                                    </div>
+                                    <!-- /card -->
+
+                                </div>
+                                <!-- /grid item -->
+
+                            </div>
+                            <!-- /grid -->
+
+                        </div>
+                        <!-- /grid item -->
+
+                        <!-- Grid Item -->
+                        <div class="col-xl-8 order-xl-1">
+
+                            <!-- Card -->
+                            <div class="card">
+
+                                <!-- Card Header -->
+                                <div class="card-header card-nav bg-transparent border-bottom d-sm-flex justify-content-sm-between">
+                                    <h3 class="mb-2 mb-sm-n5">Informations</h3>
+                                </div>
+                                <!-- /card header -->
+
+                                <!-- Card Body -->
+                                <div class="card-body pb-2">
+
+                                    <!-- Tab Content-->
+                                    <div class="tab-content mt-5">
+
+                                        <!-- Tab panel -->
+                                        <div id="tab-pane1" class="tab-pane active">
+
+                                            <!-- List -->
+                                            <ul class="dt-list dt-list-col-4">
+                                                <!-- List Item -->
+                                                <li class="dt-list__item">
+                                                    <!-- Media -->
+                                                    <div class="media">
+
+                                                        <i class="icon icon-home icon-4x mr-5 align-self-center text-yellow"></i>
+
+                                                        <!-- Media Body -->
+                                                        <div class="media-body">
+                                                            <span class="d-block text-light-gray f-12 mb-1">Adresse</span>
+                                                            <p class="h5 mb-0">{{ user.address ? user.address : 'Non renseignée' }}</p>
+                                                        </div>
+                                                        <!-- /media body -->
+
+                                                    </div>
+                                                    <!-- /media -->
+                                                </li>
+                                                <!-- /list item -->
+
+                                                <!-- List Item -->
+                                                <li class="dt-list__item">
+                                                    <!-- Media -->
+                                                    <div class="media">
+
+                                                        <i class="icon icon-company icon-4x mr-5 align-self-center text-yellow"></i>
+
+                                                        <!-- Media Body -->
+                                                        <div class="media-body">
+                                                            <span class="d-block text-light-gray f-12 mb-1">Code postal et Ville</span>
+                                                            <p class="h5 mb-0">{{ user.zipCode ? user.zipCode : 'Code postal non renseigné' }} - {{ user.city ? user.city : 'Ville non renseignée' }}</p>
+                                                        </div>
+                                                        <!-- /media body -->
+
+                                                    </div>
+                                                    <!-- /media -->
+                                                </li>
+                                                <!-- /list item -->
+
+                                                <!-- List Item -->
+                                                <li class="dt-list__item">
+                                                    <!-- Media -->
+                                                    <div class="media">
+
+                                                        <i class="icon icon-birthday-new icon-4x mr-5 align-self-center text-yellow"></i>
+
+                                                        <!-- Media Body -->
+                                                        <div class="media-body">
+                                                            <span class="d-block text-light-gray f-12 mb-1">Date de naissance</span>
+                                                            <p class="h5 mb-0">{{ user.birthday ? user.birthday|date("m/d/Y") : 'Non renseignée' }}</p>
+                                                        </div>
+                                                        <!-- /media body -->
+
+                                                    </div>
+                                                    <!-- /media -->
+                                                </li>
+                                                <!-- /list item -->
+                                            </ul>
+                                            <!-- /list -->
+
+                                        </div>
+                                        <!-- /tab panel -->
+
+                                    </div>
+                                    <!-- /tab content-->
+
+                                    <a href="{{ path('app_profile_edit') }}">Modifier vos informations</a>
+
+
+                                </div>
+                                <!-- /card body -->
+
+                            </div>
+                            <!-- /card -->
+
+                        </div>
+                        <!-- /grid item -->
+
+                    </div>
+                    <!-- /grid -->
+
+                </div>
+                <!-- /profile content -->
+
+            </div>
+            <!-- /profile -->
+
+        </div>
+        <!-- /site content -->
+
+    </div>
+    <!-- /site content wrapper -->
+
+</div>
+<!-- /custom Container -->
+
+{% include 'footer.html.twig' %}
+{% include 'script.html.twig' %}

@@ -1,0 +1,56 @@
+{% include 'head.html.twig' %}
+{% include 'loader.html.twig' %}
+{% include 'sidebar.html.twig' %}
+
+<!-- Custom Container -->
+<div class="dt-container">
+
+    <!-- Site Content Wrapper -->
+    <div class="dt-content-wrapper">
+
+        <!-- Site Content -->
+        <div class="dt-content">
+            <!-- Grid Item -->
+            <div class="col-xl-12">
+
+                <!-- Card -->
+                <div class="dt-card">
+
+                    <!-- Card Header -->
+                    <div class="dt-card__header">
+
+                        <!-- Card Heading -->
+                        <div class="dt-card__heading">
+                            <h3 class="dt-card__title">Demande d'accompagnement scolaire partie 1/2</h3>
+                        </div>
+                        <!-- /card heading -->
+
+                    </div>
+                    <!-- /card header -->
+
+                    <!-- Card Body -->
+                    <div class="dt-card__body">
+
+                        <p>Veuillez renseigner et vérifier les informations suivantes :</p>
+
+                        {{ include('enrollment/_form.html.twig') }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /site content -->
+
+    </div>
+    <!-- /site content wrapper -->
+
+</div>
+<!-- /custom Container -->
+
+{% include 'footer.html.twig' %}
+{% include 'script.html.twig' %}
+
+

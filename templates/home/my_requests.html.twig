@@ -1,0 +1,186 @@
+{% include 'head.html.twig' %}
+{% include 'loader.html.twig' %}
+{% include 'sidebar.html.twig' %}
+
+<!-- Custom Container -->
+<div class="dt-container">
+
+    <!-- Site Content Wrapper -->
+    <div class="dt-content-wrapper">
+
+        <!-- Site Content -->
+        <div class="dt-content">
+
+            <!-- Page Header -->
+            <div class="dt-page__header">
+                <h1 class="dt-page__title">Mes demandes & inscriptions</h1>
+            </div>
+            <!-- /page header -->
+
+            <!-- Grid -->
+            <div class="row">
+
+                <!-- Grid Item -->
+                <div class="col-xl-12">
+
+                    <!-- Entry Header -->
+                    <div class="dt-entry__header">
+
+                        <!-- Entry Heading -->
+                        <div class="dt-entry__heading">
+                            <h3 class="dt-entry__title">Liste de vos demandes</h3>
+                        </div>
+                        <!-- /entry heading -->
+
+                    </div>
+                    <!-- /entry header -->
+
+                    <!-- Card -->
+                    <div class="dt-card overflow-hidden">
+
+                        <!-- Card Body -->
+                        <div class="dt-card__body p-0">
+
+                            <!-- Tables -->
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-uppercase" scope="col">Type de la demande</th>
+                                        <th class="text-uppercase" scope="col">Faite le</th>
+                                        <th class="text-uppercase" scope="col">Statut</th>
+                                        <th class="text-uppercase" scope="col">Résultat</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if volunteer %}
+                                        <tr>
+                                            <td>Volontariat</td>
+                                            <td>{{ volunteer.createdAt|date("d/m/Y") }}</td>
+                                            {% if 'IN_PROGRESS' in volunteer.status %}
+                                                <td>En cours</td>
+                                                <td>En attente</td>
+                                            {% else %}
+                                                <td>Terminée</td>
+                                                <td>{{ volunteer.isValidated ? 'Accepté' : 'Refusé' }}</td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endif %}
+                                    {% if tutoring %}
+                                        <tr>
+                                            <td>Accompagnement scolaire</td>
+                                            <td>{{ tutoring.createdAt|date("d/m/Y") }}</td>
+                                            {% if 'IN_PROGRESS' in tutoring.status %}
+                                                <td>En cours</td>
+                                                <td>En attente</td>
+                                            {% else %}
+                                                <td>Terminée</td>
+                                                <td>Accepté</td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /tables -->
+
+                        </div>
+                        <!-- /card body -->
+
+                    </div>
+                    <!-- /card -->
+
+                </div>
+                <!-- /grid item -->
+
+            </div>
+            <!-- /grid -->
+
+            <!-- Grid -->
+            <div class="row">
+
+                <!-- Grid Item -->
+                <div class="col-xl-12">
+
+                    <!-- Entry Header -->
+                    <div class="dt-entry__header">
+
+                        <!-- Entry Heading -->
+                        <div class="dt-entry__heading">
+                            <h3 class="dt-entry__title">Liste de vos inscriptions</h3>
+                        </div>
+                        <!-- /entry heading -->
+
+                    </div>
+                    <!-- /entry header -->
+
+                    <p>Si vous avez des paiements en attente, veuillez prendre contact avec l'association.</p>
+
+                    <!-- Card -->
+                    <div class="dt-card overflow-hidden">
+
+                        <!-- Card Body -->
+                        <div class="dt-card__body p-0">
+
+                            <!-- Tables -->
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-uppercase" scope="col">Nom de l'évènement</th>
+                                        <th class="text-uppercase" scope="col">Date</th>
+                                        <th class="text-uppercase" scope="col">Référent</th>
+                                        <th class="text-uppercase" scope="col">Contact du référent</th>
+                                        <th class="text-uppercase" scope="col">Lieu</th>
+                                        <th class="text-uppercase" scope="col">Prix</th>
+                                        <th class="text-uppercase" scope="col">Statut</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for sessionEvent in sessionsEvents %}
+                                        <tr>
+                                            <td>{{ sessionEvent.activity ? sessionEvent.activity.name : sessionEvent.conference ? sessionEvent.conference.name : sessionEvent.course.name }}</td>
+                                            <td>Du {{ sessionEvent.startAt | date("d/m/Y H:i:s")}} au {{ sessionEvent.endAt | date("d/m/Y H:i:s")}}</td>
+                                            <td>{{ sessionEvent.referent ? sessionEvent.referent : 'Pas de référent' }}</td>
+                                            <td>{{ sessionEvent.referentContact ? sessionEvent.referentContact : '-' }}</td>
+                                            <td>{{ sessionEvent.location ? sessionEvent.location : '-' }}</td>
+                                            <td>{{ sessionEvent.price ? sessionEvent.price~'€' : 'Gratuit' }}</td>
+                                            {% for payment in payments %}
+                                                {% if payment.sessionEvent.id == sessionEvent.id %}
+                                                    {% if payment.paid %}
+                                                        <td>Paiement effectué</td>
+                                                    {% else %}
+                                                        <td>Paiement en attente</td>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /tables -->
+
+                        </div>
+                        <!-- /card body -->
+
+                    </div>
+                    <!-- /card -->
+
+                </div>
+                <!-- /grid item -->
+
+            </div>
+            <!-- /grid -->
+
+        </div>
+        <!-- /site content -->
+
+    </div>
+    <!-- /site content wrapper -->
+
+</div>
+<!-- /custom Container -->
+
+{% include 'footer.html.twig' %}
+{% include 'script.html.twig' %}

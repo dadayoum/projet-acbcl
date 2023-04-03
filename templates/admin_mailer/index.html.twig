@@ -1,0 +1,54 @@
+{% include 'head.html.twig' %}
+{% include 'loader.html.twig' %}
+{% include 'sidebar.html.twig' %}
+
+<!-- Custom Container -->
+<div class="dt-container">
+
+    <!-- Site Content Wrapper -->
+    <div class="dt-content-wrapper">
+
+        <!-- Site Content -->
+        <div class="dt-content">
+            <!-- Grid Item -->
+            <div class="col-xl-12">
+
+                <a href="{{ path('app_admin') }}">Retour à l'admin</a>
+
+                <!-- Card -->
+                <div class="dt-card">
+
+                    <!-- Card Header -->
+                    <div class="dt-card__header">
+
+                        <!-- Card Heading -->
+                        <div class="dt-card__heading">
+                            <h3 class="dt-card__title">Envoi d'un e-mail</h3>
+                        </div>
+                        <!-- /card heading -->
+
+                    </div>
+                    <!-- /card header -->
+
+                    <!-- Card Body -->
+                    <div class="dt-card__body">
+
+                        {{ include('admin_mailer/_form.html.twig', {'button_label': 'Envoyer'}) }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /site content -->
+
+    </div>
+    <!-- /site content wrapper -->
+
+</div>
+<!-- /custom Container -->
+
+{% include 'footer.html.twig' %}
+{% include 'script.html.twig' %}

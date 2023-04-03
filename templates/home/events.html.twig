@@ -1,0 +1,247 @@
+{% include 'head.html.twig' %}
+{% include 'loader.html.twig' %}
+{% include 'sidebar.html.twig' %}
+
+<!-- Custom Container -->
+<div class="dt-container">
+
+    <!-- Site Content Wrapper -->
+    <div class="dt-content-wrapper">
+
+        <!-- Site Content -->
+        <div class="dt-content">
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <!-- Page Header -->
+                <div class="dt-page__header">
+                    <h1 class="dt-page__title">Évènements</h1>
+                </div>
+                <!-- /page header -->
+            {% else %}
+                <!-- Page Header -->
+                <div class="dt-page__header">
+                    <h1 class="dt-page__title">Évènements</h1>
+                </div>
+                <!-- /page header -->
+                <p>Veuillez vous <a href="{{ path('app_login') }}">connecter</a> afin d'accéder aux informations de ces évènements.</p>
+            {% endif %}
+
+            <!-- Grid -->
+            <div class="row">
+
+                <!-- Grid Item -->
+                <div class="col-xl-12">
+
+                    <!-- Card -->
+                    <div class="card">
+
+                        <!-- Card header -->
+                        <div class="card-header card-nav border-bottom-0">
+                            <ul class="card-header-tabs nav nav-tabs nav-tabs-sm nav-scroll mx-0"
+                                role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#activities"
+                                       role="tab"
+                                       aria-controls="popular"
+                                       aria-selected="true">Activités</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#conferences" role="tab"
+                                       aria-controls="new-jercy"
+                                       aria-selected="true">Conférences</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#courses" role="tab"
+                                       aria-controls="colorado"
+                                       aria-selected="true">Formations</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /card header -->
+
+                        <!-- Tab Content-->
+                        <div class="tab-content">
+
+                            <!-- Tab panel -->
+                            <div id="activities" class="tab-pane active">
+
+                                <!-- Card Body -->
+                                <div class="card-body">
+
+                                    {% for activity in activities %}
+                                        <!-- Card -->
+                                        <div class="card shadow-none horizontal rounded-0 pb-8 border-bottom">
+
+                                            <!-- Card Stacked -->
+                                            <div class="card-stacked order-sm-1">
+
+                                                <!-- Card Body -->
+                                                <div class="card-body pt-sm-0 pb-0 px-0 pr-sm-6 pr-md-8">
+
+                                                    <!-- Card Title-->
+                                                    <h3 class="card-title font-weight-normal text-truncate">
+                                                        {{ activity.name }}
+                                                    </h3>
+                                                    <!-- Card Title-->
+
+                                                    <!-- Card Sub Title-->
+                                                    <h5 class="card-subtitle">{{ activity.information|length > 20 ? activity.information|striptags|slice(0, 20) ~ '...' : activity.information|striptags|raw }}</h5>
+                                                    <!-- /card sub title-->
+
+                                                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                                        <!-- Card Link -->
+                                                        <a class="card-link font-weight-500"
+                                                           href="{{ path('app_event_sessions', {'slug': activity.slug, 'eventType':'activity'}) }}">
+                                                            <span>Voir plus de détails</span>
+                                                            <i class="icon icon-arrow-long-right icon-lg ml-1"></i>
+                                                        </a>
+                                                        <!-- /card link -->
+                                                    {% endif %}
+
+                                                </div>
+                                                <!-- /card body -->
+
+                                            </div>
+                                            <!-- /card stacked -->
+
+                                        </div>
+                                        <!-- /card -->
+                                    {% endfor %}
+
+                                </div>
+                                <!-- /card body -->
+
+                            </div>
+                            <!-- /tab panel -->
+
+                            <!-- Tab panel -->
+                            <div id="conferences" class="tab-pane">
+
+                                <!-- Card Body -->
+                                <div class="card-body">
+
+                                    {% for conference in conferences %}
+
+                                        <!-- Card -->
+                                        <div class="card shadow-none horizontal rounded-0 pb-8 border-bottom">
+
+                                            <!-- Card Stacked -->
+                                            <div class="card-stacked order-sm-1">
+
+                                                <!-- Card Body -->
+                                                <div class="card-body py-sm-0 px-0 pr-sm-6 pr-md-8">
+
+                                                    <!-- Card Title-->
+                                                    <h3 class="card-title font-weight-normal text-truncate">
+                                                        {{ conference.name }}
+                                                    </h3>
+                                                    <!-- Card Title-->
+
+                                                    <!-- Card Sub Title-->
+                                                    <h5 class="card-subtitle">{{ conference.information|length > 20 ? conference.information|striptags|slice(0, 20) ~ '...' : conference.information|striptags|raw }}</h5>
+                                                    <!-- /card sub title-->
+
+                                                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                                        <!-- Card Link -->
+                                                        <a class="card-link font-weight-500"
+                                                           href="{{ path('app_event_sessions', {'slug': conference.slug, 'eventType':'conference'}) }}">
+                                                            <span>Voir plus de détails</span>
+                                                            <i class="icon icon-arrow-long-right icon-lg ml-1"></i>
+                                                        </a>
+                                                        <!-- /card link -->
+                                                    {% endif %}
+
+                                                </div>
+                                                <!-- /card body -->
+
+                                            </div>
+                                            <!-- /card stacked -->
+
+                                        </div>
+                                        <!-- /card -->
+
+                                    {% endfor %}
+
+                                </div>
+                                <!-- /card body -->
+
+                            </div>
+                            <!-- /tab panel -->
+
+                            <!-- Tab panel -->
+                            <div id="courses" class="tab-pane">
+
+                                <!-- Card Body -->
+                                <div class="card-body">
+
+                                    {% for course in courses %}
+
+                                        <!-- Card -->
+                                        <div class="card shadow-none horizontal rounded-0 pb-8 border-bottom">
+
+                                            <!-- Card Stacked -->
+                                            <div class="card-stacked order-sm-1">
+
+                                                <!-- Card Body -->
+                                                <div class="card-body py-sm-0 px-0 pr-sm-6 pr-md-8">
+
+                                                    <!-- Card Title-->
+                                                    <h3 class="card-title font-weight-normal text-truncate">
+                                                        {{ course.name }}
+                                                    </h3>
+                                                    <!-- Card Title-->
+
+                                                    <!-- Card Sub Title-->
+                                                    <h5 class="card-subtitle">{{ course.information|length > 20 ? course.information|striptags|slice(0, 20) ~ '...' : course.information|striptags|raw }}</h5>
+                                                    <!-- /card sub title-->
+
+                                                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                                        <!-- Card Link -->
+                                                        <a class="card-link font-weight-500"
+                                                           href="{{ path('app_event_sessions', {'slug': course.slug, 'eventType':'course'}) }}">
+                                                            <span>Voir plus de détails</span>
+                                                            <i class="icon icon-arrow-long-right icon-lg ml-1"></i>
+                                                        </a>
+                                                        <!-- /card link -->
+                                                    {% endif %}
+
+                                                </div>
+                                                <!-- /card body -->
+
+                                            </div>
+                                            <!-- /card stacked -->
+
+                                        </div>
+                                        <!-- /card -->
+
+                                    {% endfor %}
+
+                                </div>
+                                <!-- /card body -->
+
+                            </div>
+                            <!-- /tab panel -->
+
+                        </div>
+                        <!-- /tab content-->
+
+                    </div>
+                    <!-- /card -->
+
+                </div>
+                <!-- /grid item -->
+
+            </div>
+            <!-- /grid -->
+
+        </div>
+        <!-- /site content -->
+
+    </div>
+    <!-- /site content wrapper -->
+
+</div>
+<!-- /custom Container -->
+
+{% include 'footer.html.twig' %}
+{% include 'script.html.twig' %}

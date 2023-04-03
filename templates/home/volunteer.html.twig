@@ -1,0 +1,103 @@
+{% include 'head.html.twig' %}
+{% include 'loader.html.twig' %}
+{% include 'sidebar.html.twig' %}
+
+<!-- Custom Container -->
+<div class="dt-container">
+
+    <!-- Site Content Wrapper -->
+    <div class="dt-content-wrapper">
+
+        <!-- Site Content -->
+        <div class="dt-content">
+
+            {% for message in app.flashes('volunteer') %}
+                <div class="alert alert-info" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <!-- Page Header -->
+            <div class="dt-page__header">
+                <h1 class="dt-page__title">Devenez bénévole !</h1>
+            </div>
+            <!-- /page header -->
+
+            <!-- Grid -->
+            <div class="row">
+
+                <!-- Grid Item -->
+                <div class="col-xl-12">
+
+                    <p class="lead">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet blanditiis consequatur cum dignissimos distinctio, ducimus facilis fugit laborum laudantium nisi odio officiis, possimus quaerat similique sit, tempora temporibus velit?
+                    </p>
+
+                    <!-- Entry Header -->
+                    <div class="dt-entry__header">
+
+                        <!-- Entry Heading -->
+                        <div class="dt-entry__heading">
+                            <h3 class="dt-entry__title">Demande</h3>
+                        </div>
+                        <!-- /entry heading -->
+
+                    </div>
+                    <!-- /entry header -->
+
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') and user.volunteer is null %}
+                        <a href="{{ path('app_enrollment_volunteer') }}" class="btn btn-primary mt-2 mb-2">Faire ma demande de bénévolat</a>
+                    {% elseif is_granted('IS_AUTHENTICATED_FULLY') and user.volunteer is not null %}
+                        <p class="lead">
+                            Vous avez déjà fait votre demande de bénévolat.
+                        </p>
+                        <p class="lead">
+                            Pour suivre le statut de votre demande, vous pouvez cliquer <a href="{{ path('app_my_requests') }}">ICI</a> ou vous rendre dans l'onglet "MES DEMANDES".
+                        </p>
+                    {% else %}
+                        <p class="lead">
+                            Veuillez vous <a href="{{ path('app_login') }}">connecter</a> afin de faire votre demande.
+                        </p>
+                    {% endif %}
+
+                </div>
+                <!-- /grid item -->
+
+            </div>
+            <!-- /grid -->
+
+{#            <!-- Grid -->#}
+{#            <div class="row">#}
+
+{#                <!-- Grid Item -->#}
+{#                <div class="col-xl-12">#}
+
+{#                    <p class="lead">#}
+{#                        Veuillez remplir le formulaire ci-dessous afin de faire votre demande pour devenir bénévole de l'association !#}
+{#                    </p>#}
+
+{#                    <p class="lead">#}
+{#                        Vous avez déjà effectué votre demande de bénévolat. Vous pouvez suivre le statut de votre demande dans l'onglet "mes demandes" ou cliquer <a href="www.google.com">ICI</a>.#}
+{#                    </p>#}
+
+{#                    <p class="lead">#}
+{#                        Pour toute question, vous pouvez nous envoyer un email à l'adresse suivante : REMPLIR ADRESSE#}
+{#                    </p>#}
+
+{#                </div>#}
+{#                <!-- /grid item -->#}
+
+{#            </div>#}
+{#            <!-- /grid -->#}
+
+        </div>
+        <!-- /site content -->
+
+    </div>
+    <!-- /site content wrapper -->
+
+</div>
+<!-- /custom Container -->
+
+{% include 'footer.html.twig' %}
+{% include 'script.html.twig' %}

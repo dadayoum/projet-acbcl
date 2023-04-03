@@ -1,0 +1,60 @@
+{% include 'head.html.twig' %}
+{% include 'loader.html.twig' %}
+
+<!-- Root -->
+<div class="dt-root">
+    <div class="dt-root__inner">
+
+        <!-- Login Container -->
+        <div class="dt-login--container dt-forgot-password">
+
+            <!-- Login Content -->
+            <div class="dt-login__content-wrapper">
+
+                <!-- Login Content Section -->
+                <div class="dt-login__content">
+
+                    <!-- Login Content Inner -->
+                    <div class="dt-login__content-inner">
+
+                        {% for flash_error in app.flashes('reset_password_error') %}
+                            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                        {% endfor %}
+
+                        <h1>Réinitialiser votre mot de passe</h1>
+
+                        <!-- Brand logo -->
+                        <span class="dt-login__logo">
+                            <a class="dt-brand__logo-link" href="{{ path('app_home') }}">
+                                <img class="dt-brand__logo-img" src="{{ asset('build/images/icon/icon-acbcl.png') }}">
+                            </a>
+                        </span>
+                        <!-- /brand logo -->
+
+                        {{ form_start(resetForm) }}
+                        {{ form_row(resetForm.plainPassword) }}
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <button class="btn btn-primary text-uppercase">Réinitialiser votre mot de passe</button>
+                            </div>
+                            <!-- /form group -->
+                        {{ form_end(resetForm) }}
+
+                    </div>
+                    <!-- /login content inner -->
+
+                </div>
+                <!-- /login content section -->
+
+            </div>
+            <!-- /login content -->
+
+        </div>
+        <!-- /login container -->
+
+    </div>
+</div>
+<!-- /root -->
+
+{% include 'footer.html.twig' %}
+{% include 'script.html.twig' %}

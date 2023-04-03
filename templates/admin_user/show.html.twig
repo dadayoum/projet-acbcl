@@ -1,0 +1,195 @@
+{% include 'head.html.twig' %}
+{% include 'loader.html.twig' %}
+{% include 'sidebar.html.twig' %}
+
+<!-- Custom Container -->
+<div class="dt-container">
+
+    <!-- Site Content Wrapper -->
+    <div class="dt-content-wrapper">
+
+        <!-- Site Content -->
+        <div class="dt-content">
+
+            <!-- Grid Item -->
+            <div class="col-xl-12 col-md-6 col-12 order-xl-1">
+
+                <a href="{{ path('app_admin_user_index') }}">Retour à la liste</a>
+
+                <!-- Card -->
+                <div class="dt-card dt-card__full-height">
+
+                    <!-- Card Header -->
+                    <div class="dt-card__header pt-6">
+
+                        <!-- Card Heading -->
+                        <div class="dt-card__heading">
+                            <h3 class="dt-card__title">Profil de {{ user.firstName }} {{ user.lastName|upper }}</h3>
+                        </div>
+                        <!-- /card heading -->
+
+                    </div>
+                    <!-- /card header -->
+
+                    <!-- Card Body -->
+                    <div class="dt-card__body">
+
+                        <div class="row">
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-mail icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Mail</span>
+                                    <span class="h5">{{ user.email }}</span>
+                                </div>
+                                <!-- /media body -->
+
+                            </div>
+                            <!-- /media -->
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-projects icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Rôle</span>
+                                    {% if 'ROLE_ADMIN' in user.roles %}
+                                        <span class="h5">Administrateur</span>
+                                    {% else %}
+                                        <span class="h5">Utilisateur</span>
+                                    {% endif %}
+                                </div>
+                                <!-- /media body -->
+
+                            </div>
+                            <!-- /media -->
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-user icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Nom</span>
+                                    <span class="h5">{{ user.firstName }} {{ user.lastName }}</span>
+                                </div>
+                                <!-- /media body -->
+
+                            </div>
+                            <!-- /media -->
+
+                        </div>
+
+                        <div class="row">
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-date-time-picker icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Date de naissance</span>
+                                    {% if user.birthday %}
+                                        <span class="h5">{{ user.birthday|date("d/m/Y") }}</span>
+                                    {% else %}
+                                        <span class="h5">-</span>
+                                    {% endif %}
+                                </div>
+                                <!-- /media body -->
+
+                            </div>
+                            <!-- /media -->
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-home icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Adresse</span>
+                                    <span class="h5">
+                                        {% if user.address or user.city or user.zipCode %}
+                                            {{ user.address }} {{ user.city|upper }} {{ user.zipCode }}
+                                        {% else %}
+                                            <span class="h5">-</span>
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <!-- /media body -->
+
+                            </div>
+                            <!-- /media -->
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-phone-o icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Téléphone</span>
+                                    {% if user.phoneNumber %}
+                                        <span class="h5">{{ user.phoneNumber }}</span>
+                                    {% else %}
+                                        <span class="h5">-</span>
+                                    {% endif %}
+                                </div>
+                                <!-- /media body -->
+
+                            </div>
+                            <!-- /media -->
+
+                        </div>
+
+                        <div class="row">
+
+                            <!-- Media -->
+                            <div class="media mb-5 col-xl-4 col-md-12 col-12">
+
+                                <i class="icon icon-task-manager icon-xl mr-5"></i>
+
+                                <!-- Media Body -->
+                                <div class="media-body">
+                                    <span class="d-block text-light-gray f-12 mb-1">Compte vérifié</span>
+                                    <span class="h5">{{ user.isVerified ? 'Oui' : 'Non' }}</span>
+                                </div>
+                                <!-- /media body -->
+
+                            </div>
+                            <!-- /media -->
+
+                        </div>
+
+                        <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="btn btn-primary mt-2 mb-2">Éditer</a>
+
+                        {{ include('admin_user/_delete_form.html.twig') }}
+
+                    </div>
+                    <!-- /card body -->
+
+                </div>
+                <!-- /card -->
+
+            </div>
+            <!-- /grid item -->
+
+        </div>
+        <!-- /site content -->
+
+    </div>
+    <!-- /site content wrapper -->
+
+</div>
+<!-- /custom Container -->
+
+{% include 'footer.html.twig' %}
+{% include 'script.html.twig' %}

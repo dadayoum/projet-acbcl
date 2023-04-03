@@ -1,0 +1,326 @@
+<!-- Root -->
+<div class="dt-root">
+    <div class="dt-root__inner">
+
+        <!-- Header -->
+        <header class="dt-header">
+
+            <!-- Topbar -->
+            <div class="dt-topbar">
+
+                <!-- Custom Container -->
+                <div class="dt-container">
+
+                    <!-- Topbar Inner -->
+                    <div class="dt-topbar__inner">
+                        <div class="d-flex align-items-center text-truncate mr-2">
+                            <i class="icon icon-megaphone icon-fw mr-3 icon-xl"></i>
+                            <a href="{{ path('app_volunteer') }}" class="text-truncate">Devenez bénévole !</a>
+                        </div>
+
+                        <ul class="dt-list dt-list-xl dt-list-bordered text-uppercase">
+                            {% if app.user %}
+
+                            {% else %}
+                                <li class="dt-list__item">
+                                    <a href="{{ path('app_login') }}" class="dt-list__link">Connexion</a>
+                                </li>
+                                <li class="dt-list__item">
+                                    <a href="{{ path('app_register') }}" class="dt-list__link">Créer un compte</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <!-- /topbar inner -->
+
+                </div>
+                <!-- /custom container -->
+
+            </div>
+            <!-- /topbar -->
+
+            <!-- Header Top -->
+            <div class="dt-header__top">
+
+                <!-- Custom Container -->
+                <div class="dt-container">
+
+                    <!-- Brand -->
+                    <div class="dt-brand">
+
+                        <!-- Brand tool -->
+                        <div class="dt-brand__tool d-lg-none" data-toggle="main-sidebar">
+                            <div class="hamburger-inner"></div>
+                        </div>
+                        <!-- /brand tool -->
+
+                        <!-- Brand logo -->
+                        <span class="dt-brand__logo">
+                            <a class="dt-brand__logo-link" href="{{ path('app_home') }}">
+                              <img class="dt-brand__logo-img d-none d-sm-inline-block" style="height: 80px; width: auto" src="{{ asset('build/images/icon/icon-acbcl.png') }}">
+                              <img class="dt-brand__logo-symbol d-sm-none" src="{{ asset('build/images/icon/icon-acbcl-small.png') }}">
+                            </a>
+                        </span>
+                        <!-- /brand logo -->
+
+                    </div>
+                    <!-- /brand -->
+
+                    <!-- Header toolbar-->
+                    <div class="dt-header__toolbar">
+
+                        <!-- Navbar -->
+                        <ul class="navbar-nav navbar-expand-lg dt-navbar d-none d-lg-flex">
+
+                            <!-- Nav Item -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
+                            </li>
+                            <!-- /nav item -->
+
+                            {% if is_granted('ROLE_ADMIN') %}
+
+                                <!-- Nav Item -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_admin') }}">Admin</a>
+                                </li>
+                                <!-- /nav item -->
+
+                            {% endif %}
+
+                            <!-- Nav Item -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)">Inscription</a>
+                                <!-- Sub-menu -->
+                                <ul class="sub-menu">
+                                    <!-- Nav Item -->
+                                    <li class="nav-item">
+                                        <a href="{{ path('app_volunteer') }}" class="nav-link">
+                                            <i class="icon icon-components icon-fw icon-xl"></i> <span
+                                                    class="nav-text">Devenir bénévole</span> </a>
+                                    </li>
+                                    <!-- /nav item -->
+
+                                    <!-- Nav Item -->
+                                    <li class="nav-item">
+                                        <a href="{{ path('app_tutoring') }}" class="nav-link">
+                                            <i class="icon icon-contacts-app icon-fw icon-xl"></i> <span
+                                                    class="nav-text">Demande d'accompagnement scolaire</span> </a>
+                                    </li>
+                                    <!-- /nav item -->
+
+                                    <!-- Nav Item -->
+                                    <li class="nav-item">
+                                        <a href="{{ path('app_events') }}" class="nav-link">
+                                            <i class="icon icon-metrics icon-fw icon-xl"></i> <span
+                                                    class="nav-text">Évènements</span> </a>
+                                    </li>
+                                    <!-- /nav item -->
+                                </ul>
+                                <!-- /sub-menu -->
+                            </li>
+                            <!-- /nav item -->
+
+                            <!-- Nav Item -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_calendar') }}">Calendrier</a>
+                            </li>
+                            <!-- /nav item -->
+
+                            <!-- Nav Item -->
+                            <li class="nav-item mega-menu">
+                                <a class="nav-link" href="{{ path('app_events') }}">Évènements</a>
+                            </li>
+                            <!-- /nav item -->
+
+                            <!-- Nav Item -->
+                            <li class="nav-item mega-menu">
+                                <a class="nav-link" href="{{ path('app_articles') }}">Articles</a>
+                            </li>
+                            <!-- /nav item -->
+
+                            {% if app.user %}
+                                <!-- Nav Item -->
+                                <li class="nav-item mega-menu">
+                                    <a class="nav-link" href="{{ path('app_my_requests') }}">Mes demandes & inscriptions</a>
+                                </li>
+                                <!-- /nav item -->
+                            {% endif %}
+
+                            <!-- Nav Item -->
+                            <li class="nav-item mega-menu">
+                                <a class="nav-link" href="{{ path('app_whoarewe') }}">Qui sommes-nous ?</a>
+                            </li>
+                            <!-- /nav item -->
+
+                        </ul>
+                        <!-- /navbar -->
+
+                        {% if app.user %}
+                            <!-- Header Menu Wrapper -->
+                            <div class="dt-nav-wrapper">
+                                <!-- Header Menu -->
+                                <ul class="dt-nav">
+                                    <li class="dt-nav__item dropdown">
+
+                                        <!-- Dropdown Link -->
+                                        <a href="#" class="dt-nav__link dropdown-toggle no-arrow dt-avatar-wrapper" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <img class="dt-avatar size-30" src="{{ asset('build/images/icon-acbcl-favicon.ico') }}">
+                                            <span class="dt-avatar-info d-none d-sm-block">
+                                                <span class="dt-avatar-name">{{ app.user.firstName }} {{ app.user.lastName|upper }}</span>
+                                            </span>
+                                        </a>
+                                        <!-- /dropdown link -->
+
+                                        <!-- Dropdown Option -->
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <div class="dt-avatar-wrapper flex-nowrap p-6 mt-n2 bg-gradient-purple text-white rounded-top">
+                                                <img class="dt-avatar" src="{{ asset('build/images/icon-acbcl-favicon.ico') }}">
+                                                <span class="dt-avatar-info">
+                                                    <span class="dt-avatar-name">{{ app.user.firstName }} {{ app.user.lastName|upper }}</span>
+                                                    {% if app.user.roles[0] == 'ROLE_USER' %}
+                                                        <span class="f-12">Membre</span>
+                                                    {% else %}
+                                                        <span class="f-12">Admin</span>
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                            <a class="dropdown-item" href="{{ path('app_profile') }}"><i class="icon icon-user icon-fw mr-2 mr-sm-1"></i>Compte</a>
+                                            <a class="dropdown-item" href="{{ path('app_logout') }}"> <i class="icon icon-editors icon-fw mr-2 mr-sm-1"></i>Déconnexion</a>
+                                        </div>
+                                        <!-- /dropdown option -->
+
+                                    </li>
+                                </ul>
+                                <!-- /header menu -->
+                            </div>
+                            <!-- /header menu wrapper -->
+                        {% endif %}
+
+
+
+                    </div>
+                    <!-- /header toolbar -->
+
+                </div>
+                <!-- /custom container -->
+
+            </div>
+            <!-- /header top -->
+
+        </header>
+        <!-- /header -->
+
+        <!-- Site Main -->
+        <main class="dt-main">
+            <!-- Sidebar -->
+            <aside id="main-sidebar" class="dt-sidebar d-lg-none">
+                <div class="dt-sidebar__container">
+
+                    <!-- Sidebar Navigation -->
+                    <ul class="dt-side-nav">
+
+                        <!-- Menu Header -->
+                        <li class="dt-side-nav__item dt-side-nav__header">
+                            <span class="dt-side-nav__text">ACBCL</span>
+                        </li>
+                        <!-- /menu header -->
+
+                        <!-- Menu Item -->
+                        <li class="dt-side-nav__item">
+                            <a href="{{ path('app_home') }}" class="dt-side-nav__link" title="Accueil"> <i
+                                        class="icon icon-wall icon-fw icon-lg"></i>
+                                <span class="dt-side-nav__text">Accueil</span> </a>
+                        </li>
+                        <!-- /menu item -->
+
+                        {% if is_granted('ROLE_ADMIN') %}
+
+                            <!-- Menu Item -->
+                            <li class="dt-side-nav__item">
+                                <a href="{{ path('app_admin') }}" class="dt-side-nav__link" title="Admin"> <i
+                                            class="icon icon-editors icon-fw icon-lg"></i>
+                                    <span class="dt-side-nav__text">Admin</span> </a>
+                            </li>
+                            <!-- /menu item -->
+
+                        {% endif %}
+
+                        <li class="dt-side-nav__item">
+                            <a href="javascript:void(0)" class="dt-side-nav__link dt-side-nav__arrow" title="Inscription">
+                                <i class="icon icon-widgets icon-fw icon-lg"></i>
+                                <span class="dt-side-nav__text">Inscription</span>
+                            </a>
+
+                            <!-- Sub-menu -->
+                            <ul class="dt-side-nav__sub-menu">
+                                <li class="dt-side-nav__item">
+                                    <a href="{{ path('app_volunteer') }}" class="dt-side-nav__link" title="Benevole">
+                                        <i class="icon icon-components icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Devenir bénévole</span>
+                                    </a>
+                                </li>
+
+                                <li class="dt-side-nav__item">
+                                    <a href="{{ path('app_tutoring') }}" class="dt-side-nav__link" title="Accompagnement">
+                                        <i class="icon icon-contacts-app icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Demande d'accompagnement scolaire</span>
+                                    </a>
+                                </li>
+
+                                <li class="dt-side-nav__item">
+                                    <a href="{{ path('app_events') }}" class="dt-side-nav__link" title="Evenements">
+                                        <i class="icon icon-metrics icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Évènements</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- /sub-menu -->
+
+                        </li>
+
+                        <!-- Menu Item -->
+                        <li class="dt-side-nav__item">
+                            <a href="{{ path('app_calendar') }}" class="dt-side-nav__link" title="Admin"> <i
+                                        class="icon icon-date-time-picker icon-fw icon-lg"></i>
+                                <span class="dt-side-nav__text">Calendrier</span> </a>
+                        </li>
+                        <!-- /menu item -->
+
+                        <!-- Menu Item -->
+                        <li class="dt-side-nav__item">
+                            <a href="{{ path('app_events') }}" class="dt-side-nav__link" title="Activites"> <i
+                                        class="icon icon-metrics icon-fw icon-lg"></i>
+                                <span class="dt-side-nav__text">Évènements</span> </a>
+                        </li>
+                        <!-- /menu item -->
+
+                        <!-- Menu Item -->
+                        <li class="dt-side-nav__item">
+                            <a href="{{ path('app_articles') }}" class="dt-side-nav__link" title="Articles"> <i
+                                        class="icon icon-jumbotron icon-fw icon-lg"></i>
+                                <span class="dt-side-nav__text">Articles</span> </a>
+                        </li>
+                        <!-- /menu item -->
+
+                        {% if app.user %}
+                            <!-- Menu Item -->
+                            <li class="dt-side-nav__item">
+                                <a href="{{ path('app_my_requests') }}" class="dt-side-nav__link" title="Requests"> <i
+                                            class="icon icon-forms-basic icon-fw icon-lg"></i>
+                                    <span class="dt-side-nav__text">Mes demandes & inscriptions</span> </a>
+                            </li>
+                            <!-- /menu item -->
+                        {% endif %}
+
+                        <!-- Menu Item -->
+                        <li class="dt-side-nav__item">
+                            <a href="{{ path('app_whoarewe') }}" class="dt-side-nav__link" title="Requests"> <i
+                                        class="icon icon-quote-up icon-fw icon-lg"></i>
+                                <span class="dt-side-nav__text">Qui sommes-nous ?</span> </a>
+                        </li>
+                        <!-- /menu item -->
+
+                </div>
+            </aside>
+            <!-- /sidebar -->

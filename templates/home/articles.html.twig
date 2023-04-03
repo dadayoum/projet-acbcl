@@ -1,0 +1,142 @@
+{% include 'head.html.twig' %}
+{% include 'loader.html.twig' %}
+{% include 'sidebar.html.twig' %}
+
+<!-- Custom Container -->
+<div class="dt-container">
+
+    <!-- Site Content Wrapper -->
+    <div class="dt-content-wrapper">
+
+        <!-- Site Content -->
+        <div class="dt-content">
+
+            <!-- Page Header -->
+            <div class="dt-page__header">
+                <h1 class="dt-page__title">Articles</h1>
+            </div>
+            <!-- /page header -->
+
+            <!-- Grid -->
+            <div class="row">
+
+                <!-- Grid Item -->
+                <div class="col-xl-12">
+
+                    <!-- Card -->
+                    <div class="card">
+
+                        <!-- Card header -->
+                        <div class="card-header card-nav border-bottom-0">
+                            <ul class="card-header-tabs nav nav-tabs nav-tabs-sm nav-scroll mx-0"
+                                role="tablist">
+                                {% set classChange = true %}
+                                {% for articleType in articlesType %}
+                                    {% if classChange %}
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href=#{{ articleType.name }}
+                                               role="tab"
+                                               aria-controls={{ articleType.name }}
+                                               aria-selected="true">{{ articleType.name }}</a>
+                                        </li>
+                                        {% set classChange = false %}
+                                    {% else %}
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href=#{{ articleType.name }}
+                                               role="tab"
+                                               aria-controls={{ articleType.name }}
+                                               aria-selected="true">{{ articleType.name }}</a>
+                                        </li>
+                                    {% endif %}
+
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <!-- /card header -->
+
+                        <!-- Tab Content-->
+                        <div class="tab-content">
+
+                            {% set classChange = true %}
+                            {% for articleType in articlesType %}
+                                <!-- Tab panel -->
+                                {% if classChange %}
+                                    <div id={{ articleType.name }} class="tab-pane active">
+                                    {% set classChange = false %}
+                                {% else %}
+                                    <div id={{ articleType.name }} class="tab-pane">
+                                {% endif %}
+
+                                <!-- Card Body -->
+                                <div class="card-body">
+
+                                    {% for article in articles %}
+                                        {% if articleType.name == article.articleType.name %}
+                                            <!-- Card -->
+                                            <div class="card shadow-none horizontal rounded-0 pb-8 border-bottom">
+
+                                                <!-- Card Stacked -->
+                                                <div class="card-stacked order-sm-1">
+
+                                                    <!-- Card Body -->
+                                                    <div class="card-body pt-sm-0 pb-0 px-0 pr-sm-6 pr-md-8">
+
+                                                        <!-- Card Title-->
+                                                        <h3 class="card-title font-weight-normal text-truncate">
+                                                            {{ article.title }}
+                                                        </h3>
+                                                        <!-- Card Title-->
+
+                                                        <!-- Card Sub Title-->
+                                                        <h5 class="card-subtitle">{{ article.createdAt | date("d/m/Y") }}</h5>
+                                                        <!-- /card sub title-->
+
+                                                        <!-- Card Link -->
+                                                        <a class="card-link font-weight-500"
+                                                           href="{{ path('app_article_details', {'id': article.id}) }}">
+                                                            <span>Lire l'article</span>
+                                                            <i class="icon icon-arrow-long-right icon-lg ml-1"></i>
+                                                        </a>
+                                                        <!-- /card link -->
+
+                                                    </div>
+                                                    <!-- /card body -->
+
+                                                </div>
+                                                <!-- /card stacked -->
+
+                                            </div>
+                                            <!-- /card -->
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </div>
+                                <!-- /card body -->
+
+                                </div>
+                                <!-- /tab panel -->
+                            {% endfor %}
+
+                        </div>
+                        <!-- /tab content-->
+
+                    </div>
+                    <!-- /card -->
+
+                </div>
+                <!-- /grid item -->
+
+            </div>
+            <!-- /grid -->
+
+        </div>
+        <!-- /site content -->
+
+    </div>
+    <!-- /site content wrapper -->
+
+</div>
+<!-- /custom Container -->
+
+{% include 'footer.html.twig' %}
+{% include 'script.html.twig' %}

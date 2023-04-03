@@ -1,0 +1,145 @@
+{% include 'head.html.twig' %}
+{% include 'loader.html.twig' %}
+{% include 'sidebar.html.twig' %}
+
+<!-- Custom Container -->
+<div class="dt-container">
+
+    <!-- Site Content Wrapper -->
+    <div class="dt-content-wrapper">
+
+        <!-- Site Content -->
+        <div class="dt-content">
+
+            <!-- Page Header -->
+            <div class="dt-page__header">
+                <h1 class="dt-page__title">Panel administrateur</h1>
+            </div>
+            <!-- /page header -->
+
+            <!-- Grid -->
+            <div class="row">
+
+                <!-- Grid Item -->
+                <div class="col-xl-12">
+
+                    <!-- Entry Header -->
+                    <div class="dt-entry__header">
+
+                        <!-- Entry Heading -->
+                        <div class="dt-entry__heading">
+                            <h3 class="dt-entry__title">Paiements</h3>
+                        </div>
+                        <!-- /entry heading -->
+
+                    </div>
+                    <!-- /entry header -->
+
+                    <a href="{{ path('app_admin_payment_new') }}">Créer une nouveau paiement</a>
+
+                    <!-- Card -->
+                    <div class="dt-card">
+
+                        <!-- Card Body -->
+                        <div class="dt-card__body">
+
+                            <!-- Tables -->
+                            <div class="table-responsive">
+
+                                <table id="data-table" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>N° du paiement</th>
+                                        <th>Date de création</th>
+                                        <th>Date de mise à jour</th>
+                                        <th>Évènement</th>
+                                        <th>Email</th>
+                                        <th>Nom</th>
+                                        <th>Moyen</th>
+                                        <th>A payé</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for payment in payments %}
+                                        <tr>
+                                            <td>{{ payment.id }}</td>
+                                            <td>{{ payment.createdAt | date("d/m/Y H:i:s") }}</td>
+                                            {% if payment.updatedAt %}
+                                                <td>{{ payment.updatedAt | date("d/m/Y H:i:s")}}</td>
+                                            {% else %}
+                                                <td>-</td>
+                                            {% endif %}
+                                            {% if payment.sessionEvent.course %}
+                                                <td>Formation | {{ payment.sessionEvent.course.name }} | Session N°{{ payment.sessionEvent.id }}</td>
+                                            {% elseif payment.sessionEvent.activity %}
+                                                <td>Activité | {{ payment.sessionEvent.activity.name }} | Session N°{{ payment.sessionEvent.id }}</td>
+                                            {% elseif payment.sessionEvent.conference %}
+                                                <td>Conférence | {{ payment.sessionEvent.conference.name }} | Session N°{{ payment.sessionEvent.id }}</td>
+                                            {% else %}
+                                                <td>-</td>
+                                            {% endif %}
+                                            <td>{{ payment.userPayment.email }}</td>
+                                            <td>{{ payment.userPayment.firstName }} {{ payment.userPayment.lastName|upper}}</td>
+                                            {% if 'BANK_CHECK' in payment.paymentType %}
+                                                <td>Chèque</td>
+                                            {% elseif 'CASH' in payment.paymentType %}
+                                                <td>Espèce</td>
+                                            {% elseif 'FREE' in payment.paymentType %}
+                                                <td>Aucun</td>
+                                            {% elseif 'STRIPE' in payment.paymentType %}
+                                                <td>Stripe</td>
+                                            {% elseif 'BANK_TRANSFER' in payment.paymentType %}
+                                                <td>Virement</td>
+                                            {% else %}
+                                                <td>Autre</td>
+                                            {% endif %}
+                                            <td>{{ payment.paid ? 'Oui' : 'Non' }}</td>
+                                            <td>
+                                                <a href="{{ path('app_admin_payment_show', {'id': payment.id}) }}">Voir</a> |
+                                                <a href="{{ path('app_admin_payment_edit', {'id': payment.id}) }}">Éditer</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>N° du paiement</th>
+                                        <th>Date de création</th>
+                                        <th>Date de mise à jour</th>
+                                        <th>Évènement</th>
+                                        <th>Email</th>
+                                        <th>Nom</th>
+                                        <th>Moyen</th>
+                                        <th>A payé</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+
+                            </div>
+                            <!-- /tables -->
+
+                        </div>
+                        <!-- /card body -->
+
+                    </div>
+                    <!-- /card -->
+
+                </div>
+                <!-- /grid item -->
+
+            </div>
+            <!-- /grid -->
+
+        </div>
+        <!-- /site content -->
+
+    </div>
+    <!-- /site content wrapper -->
+
+</div>
+<!-- /custom Container -->
+
+{% include 'footer.html.twig' %}
+{% include 'script.html.twig' %}

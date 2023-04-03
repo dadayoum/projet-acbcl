@@ -1,0 +1,193 @@
+{% include 'head.html.twig' %}
+{% include 'loader.html.twig' %}
+{% include 'sidebar.html.twig' %}
+
+<!-- Custom Container -->
+<div class="dt-container">
+
+    <!-- Site Content Wrapper -->
+    <div class="dt-content-wrapper">
+
+        <!-- Site Content -->
+        <div class="dt-content">
+
+            <!-- Grid -->
+            <div class="row">
+
+                <!-- Grid Item -->
+                <div class="col-xl-12">
+
+                    <!-- Card -->
+                    <div class="dt-card">
+
+                        <!-- Card Header -->
+                        <div class="card-header card-nav bg-transparent border-bottom d-sm-flex justify-content-sm-between">
+                            <h3 class="mb-2 mb-sm-n5">Confirmation avant paiement</h3>
+                        </div>
+                        <!-- /card header -->
+
+                        <!-- Card Body -->
+                        <div class="card-body pb-2">
+
+                            <!-- Tab Content-->
+                            <div class="tab-content mt-5">
+
+                                <!-- Tab panel -->
+                                <div id="tab-pane1" class="tab-pane active">
+
+                                    <!-- List -->
+                                    <ul class="dt-list dt-list-col-4">
+                                        <!-- List Item -->
+                                        <li class="dt-list__item">
+                                            <!-- Media -->
+                                            <div class="media">
+
+                                                <i class="icon icon-description icon-4x mr-5 align-self-center text-yellow"></i>
+
+                                                <!-- Media Body -->
+                                                <div class="media-body">
+                                                    <span class="d-block text-light-gray f-12 mb-1">Évènement</span>
+
+                                                        <p class="h5 mb-0">{{ name }}</p>
+
+                                                </div>
+                                                <!-- /media body -->
+
+                                            </div>
+                                            <!-- /media -->
+                                        </li>
+                                        <!-- /list item -->
+
+                                        <!-- List Item -->
+                                        <li class="dt-list__item">
+                                            <!-- Media -->
+                                            <div class="media">
+
+                                                <i class="icon icon-date-time-picker icon-4x mr-5 align-self-center text-yellow"></i>
+
+                                                <!-- Media Body -->
+                                                <div class="media-body">
+                                                    <span class="d-block text-light-gray f-12 mb-1">Début</span>
+                                                    <p class="h5 mb-0">{{ sessionEvent.startAt | date("d/m/Y H:i:s") }}</p>
+                                                </div>
+                                                <!-- /media body -->
+
+                                            </div>
+                                            <!-- /media -->
+                                        </li>
+                                        <!-- /list item -->
+
+                                        <!-- List Item -->
+                                        <li class="dt-list__item">
+                                            <!-- Media -->
+                                            <div class="media">
+
+                                                <i class="icon icon-date-time-picker icon-4x mr-5 align-self-center text-yellow"></i>
+
+                                                <!-- Media Body -->
+                                                <div class="media-body">
+                                                    <span class="d-block text-light-gray f-12 mb-1">Fin</span>
+                                                    <p class="h5 mb-0">{{ sessionEvent.endAt | date("d/m/Y H:i:s") }}</p>
+                                                </div>
+                                                <!-- /media body -->
+
+                                            </div>
+                                            <!-- /media -->
+                                        </li>
+                                        <!-- /list item -->
+
+                                        <!-- List Item -->
+                                        <li class="dt-list__item">
+                                            <!-- Media -->
+                                            <div class="media">
+
+                                                <i class="icon icon-home icon-4x mr-5 align-self-center text-yellow"></i>
+
+                                                <!-- Media Body -->
+                                                <div class="media-body">
+                                                    <span class="d-block text-light-gray f-12 mb-1">Lieu</span>
+                                                    <p class="h5 mb-0">{{ sessionEvent.location ? sessionEvent.location : '-' }}</p>
+                                                </div>
+                                                <!-- /media body -->
+
+                                            </div>
+                                            <!-- /media -->
+                                        </li>
+                                        <!-- /list item -->
+
+                                        <!-- List Item -->
+                                        <li class="dt-list__item">
+                                            <!-- Media -->
+                                            <div class="media">
+
+                                                <i class="icon icon-influence icon-4x mr-5 align-self-center text-yellow"></i>
+
+                                                <!-- Media Body -->
+                                                <div class="media-body">
+                                                    <span class="d-block text-light-gray f-12 mb-1">Réferent</span>
+                                                    <p class="h5 mb-0">{{ sessionEvent.referent ? sessionEvent.referent : 'Pas de referent' }} | {{ sessionEvent.referentContact ? sessionEvent.referentContact : '' }}</p>
+
+                                                </div>
+                                                <!-- /media body -->
+
+                                            </div>
+                                            <!-- /media -->
+                                        </li>
+                                        <!-- /list item -->
+
+                                        <!-- List Item -->
+                                        <li class="dt-list__item">
+                                            <!-- Media -->
+                                            <div class="media">
+
+                                                <i class="icon icon-price-list icon-4x mr-5 align-self-center text-yellow"></i>
+
+                                                <!-- Media Body -->
+                                                <div class="media-body">
+                                                    <span class="d-block text-light-gray f-12 mb-1">Prix</span>
+                                                    <p class="h5 mb-0">{{ sessionEvent.price ? sessionEvent.price~'€' : 'Gratuit' }}</p>
+
+                                                </div>
+                                                <!-- /media body -->
+
+                                            </div>
+                                            <!-- /media -->
+                                        </li>
+                                        <!-- /list item -->
+                                    </ul>
+                                    <!-- /list -->
+
+                                </div>
+                                <!-- /tab panel -->
+
+                            </div>
+                            <!-- /tab content-->
+
+                        </div>
+                        <!-- /card body -->
+
+                        <!-- Card Body -->
+                        <div class="dt-card__body">
+                            <a class="btn btn-primary" href="{{ path('app_checkout') }}">Paiement en ligne</a>
+                            <p>Si vous souhaitez payer par chèque ou tout autres moyens, vous pouvez cliquer <a href="{{ path('app_success_without_payment') }}">ICI</a> afin d'avertir l'association.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /grid item -->
+
+            </div>
+            <!-- /grid -->
+
+        </div>
+        <!-- /site content -->
+
+    </div>
+    <!-- /site content wrapper -->
+
+</div>
+<!-- /custom Container -->
+
+{% include 'footer.html.twig' %}
+{% include 'script.html.twig' %}

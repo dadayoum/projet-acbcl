@@ -1,0 +1,118 @@
+{#{% extends 'base.html.twig' %}#}
+{% include 'head.html.twig' %}
+{% include 'loader.html.twig' %}
+
+<!-- Root -->
+<div class="dt-root">
+    <div class="dt-root__inner">
+
+        <!-- Login Container -->
+        <div class="dt-login--container">
+
+            <!-- Login Content -->
+            <div class="dt-login__content-wrapper">
+
+                <!-- Login Background Section -->
+                <div class="dt-login__bg-section">
+
+                    <div class="dt-login__bg-content">
+                        <!-- Login Title -->
+                        <h1 class="dt-login__title">Connexion</h1>
+                        <!-- /login title -->
+
+                        <p class="f-16">Venez explorer notre assossiation !</p>
+                    </div>
+
+
+                    <!-- Brand logo -->
+                    <div class="dt-login__logo">
+                        <a class="dt-brand__logo-link" href="{{ path('app_home') }}">
+                            <img class="dt-brand__logo-img" src="{{ asset('build/images/icon/icon-acbcl.png') }}">
+                        </a>
+                    </div>
+                    <!-- /brand logo -->
+
+                </div>
+                <!-- /login background section -->
+
+                <!-- Login Content Section -->
+                <div class="dt-login__content">
+
+                    <!-- Login Content Inner -->
+                    <div class="dt-login__content-inner">
+
+                        <!-- Form -->
+                        <form method="post">
+
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+
+                            {% if app.user %}
+                                <div class="mb-3">
+                                    Vous êtes déjà connecté en tant que : {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+                                </div>
+                            {% endif %}
+
+                            <div class="form-group">
+                                <label class="sr-only" for="inputEmail">E-mail</label>
+                                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="E-mail" autocomplete="email" required autofocus>
+                            </div>
+                            <!-- /form group -->
+
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <label class="sr-only" for="inputPassword">Mot de passe</label>
+                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required>
+                            </div>
+                            <!-- /form group -->
+
+                            <!-- Form Group -->
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                            <!-- /form group -->
+
+                            <!-- Form Group -->
+                            <div class="dt-checkbox d-block mb-6">
+                                <input type="checkbox" id="checkbox-1" name="_remember_me" checked>
+                                <label class="dt-checkbox-content" for="checkbox-1">
+                                    Se souvenir de moi !
+                                </label>
+                            </div>
+                            <!-- /form group -->
+
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary text-uppercase">Connexion</button>
+                                <span class="d-inline-block ml-4">Ou
+                                  <a class="d-inline-block font-weight-500 ml-3" href="{{ path('app_register') }}">Créer un nouveau compte</a>
+                                </span>
+                            </div>
+                            <!-- /form group -->
+
+                        </form>
+                        <!-- /form -->
+
+                    </div>
+                    <!-- /login content inner -->
+
+                    <!-- Login Content Footer -->
+                    <div class="dt-login__content-footer">
+                        <a href="{{ path('app_forgot_password_request') }}">Vous n'arrivez pas à vous connecter ?</a>
+                    </div>
+                    <!-- /login content footer -->
+
+                </div>
+                <!-- /login content section -->
+
+            </div>
+            <!-- /login content -->
+
+        </div>
+        <!-- /login container -->
+
+    </div>
+</div>
+<!-- /root -->
+
+{% include 'footer.html.twig' %}
+{% include 'script.html.twig' %}
